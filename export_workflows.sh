@@ -1,10 +1,14 @@
 #!/bin/bash
 
-EXPORT_ROOT=${EXPORT_ROOT:-/data}
-DATE=$(date +%Y%m%d)
-EXPORT_DIR="${EXPORT_ROOT}/n8n-${DATE}"
-mkdir -p "$EXPORT_DIR"
+# This script exports n8n workflows for backup or version control
 
-n8n export:workflow --all --output="$EXPORT_DIR"
+# Path to save the exported workflows
+EXPORT_DIR="/home/node/workflows"
+
+# Create export directory if it doesn't exist
+mkdir -p $EXPORT_DIR
+
+# Export all workflows
+n8n export:workflow --all --output=$EXPORT_DIR
 
 echo "Workflows exported to $EXPORT_DIR"
